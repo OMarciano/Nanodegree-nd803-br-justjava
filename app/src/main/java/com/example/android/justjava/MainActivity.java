@@ -1,5 +1,6 @@
 package com.example.android.justjava;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -7,6 +8,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,16 +30,44 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private int calculatePrice(int quantity, int cuprice){
-        return quantity * cuprice;
+        int WhippedCream = 0;
+        int Chocolate = 0;
+        if (WhippedCream()){
+            WhippedCream = quantity;
+        }
+        if (Chocolate()){
+            Chocolate = quantity * 2;
+        }
+
+        return quantity * cuprice + WhippedCream + Chocolate;
     }
 
     public void increment (View view){
         quantity = quantity + 1;
+        if (quantity >= 101){
+            quantity = 100;
+            Context context = getApplicationContext();
+            CharSequence text = "Max of Coffes: 100!";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+
+        }
         displayQuantity(quantity);
     }
 
     public void decrement (View view){
         quantity = quantity - 1;
+        if (quantity <= 0){
+            quantity = 1;
+            Context context = getApplicationContext();
+            CharSequence text = "Min of Coffes: 1!";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+
+
+        }
         displayQuantity(quantity);
     }
 
@@ -92,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
         boolean chocolate = Chocolate();
         String order = createOrderSummary(quantity, cbWhippedCream, chocolate);
         displayMessage(order);
+
     }
 
 }
