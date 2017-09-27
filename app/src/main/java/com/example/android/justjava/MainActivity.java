@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -40,6 +41,14 @@ public class MainActivity extends AppCompatActivity {
         displayQuantity(quantity);
     }
 
+
+    public String name(){
+        EditText name = (EditText) findViewById(R.id.et_name);
+        String personName = name.getText().toString();
+        return personName;
+    }
+
+
     public boolean WhippedCream(){
         CheckBox whipped = (CheckBox) findViewById(R.id.cb_whipped_cream);
         boolean WhippedCream =  whipped.isChecked();
@@ -53,9 +62,22 @@ public class MainActivity extends AppCompatActivity {
         return cbChocolate;
     }
 
+
+
+
+    /**
+     * Cria um resumo da ordem.
+     *
+     * @param WhippedCream é se ou não o usuário quer coberta de chantilly
+     * @param Chocolate é se ou não o usuário quer cobertura de chocolate
+     * @param quantity quantidade da ordem
+     * @return resumo do texto
+     */
+
     private String createOrderSummary(int quantity, boolean WhippedCream, boolean Chocolate){
         int price = calculatePrice(quantity, 5);
-        String orderSummary = "Name: Leonardo Marciano";
+        String name = name();
+        String orderSummary = "Name: " + name;
         orderSummary += "\nAdd Whipped Cream? " + WhippedCream; //bool WhippedCream
         orderSummary += "\n Add Chocolate? " + Chocolate;
         orderSummary += "\nQuantity = " + quantity; // quantity
@@ -63,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
         orderSummary += "\n Thanks you!!";
         return orderSummary;
     }
+
 
     public void submitOrder(View view){
         boolean cbWhippedCream = WhippedCream();
