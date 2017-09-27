@@ -27,6 +27,15 @@
             android:text="Whipped cream"
             android:textAppearance="?android:textAppearanceMedium" />
 
+        <CheckBox
+            android:id="@+id/cb_chocolate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:padding="8dp"
+            android:text="Chocolate"
+            android:textAppearance="?android:textAppearanceMedium" />
+
 
         <TextView
             android:layout_width="wrap_content"

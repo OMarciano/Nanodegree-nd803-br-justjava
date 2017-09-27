@@ -47,15 +47,27 @@ public class MainActivity extends AppCompatActivity {
         return WhippedCream;
     }
 
-    private String createOrderSummary(int quantity, boolean WhippedCream){
+    public boolean Chocolate(){
+        CheckBox chocolate = (CheckBox) findViewById(R.id.cb_chocolate);
+        boolean cbChocolate = chocolate.isChecked();
+        return cbChocolate;
+    }
+
+    private String createOrderSummary(int quantity, boolean WhippedCream, boolean Chocolate){
         int price = calculatePrice(quantity, 5);
-        String orderSummary = "Name: Leonardo Marciano\nAdd Whipped Cream? " + WhippedCream + "\n Quantity = " + quantity + "\nTotal = R$" + price + "\nThanks you!";
+        String orderSummary = "Name: Leonardo Marciano";
+        orderSummary += "\nAdd Whipped Cream? " + WhippedCream; //bool WhippedCream
+        orderSummary += "\n Add Chocolate? " + Chocolate;
+        orderSummary += "\nQuantity = " + quantity; // quantity
+        orderSummary += "\nTotal= U$ " + price; // price
+        orderSummary += "\n Thanks you!!";
         return orderSummary;
     }
 
     public void submitOrder(View view){
         boolean cbWhippedCream = WhippedCream();
-        String order = createOrderSummary(quantity, cbWhippedCream);
+        boolean chocolate = Chocolate();
+        String order = createOrderSummary(quantity, cbWhippedCream, chocolate);
         displayMessage(order);
     }
 
